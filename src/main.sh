@@ -346,7 +346,7 @@ display_config() {
   [[ -n "$SSH_KEY" ]] && echo -e "  ${BOLD}SSH Key:${NC}       $SSH_KEY"
   echo ""
 
-  read -p "Proceed with migration? [y/N] " -n 1 -r
+  read -p "Proceed with migration? [y/N] " -n 1 -r </dev/tty
   echo ""
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     log_info "Migration cancelled"
@@ -425,14 +425,14 @@ interactive_edit() {
       echo -e "  ${CYAN}[D]efault all${NC} - Apply default to all remaining"
       echo -e "  ${RED}[Q]uit${NC} - Stop and apply changes made so far"
       echo ""
-      read -p "  Choice [E/A/S/D/Q]: " -n 1 -r choice
+      read -p "  Choice [E/A/S/D/Q]: " -n 1 -r choice </dev/tty
       echo ""
 
       case "${choice^^}" in
       E)
         echo ""
-        read -p "  New author name [$NEW_NAME]: " custom_name
-        read -p "  New author email [$NEW_EMAIL]: " custom_email
+        read -p "  New author name [$NEW_NAME]: " -r custom_name </dev/tty
+        read -p "  New author email [$NEW_EMAIL]: " -r custom_email </dev/tty
 
         custom_name="${custom_name:-$NEW_NAME}"
         custom_email="${custom_email:-$NEW_EMAIL}"
